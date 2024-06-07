@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    margin: 0;  /* Ensure there's no margin around the body */
+}
+
+.login {
+    background-color: #f7f7f7;  /* Light gray background for better contrast */
+    padding: 40px;
+    width: 300px;  /* Increased width for better spacing */
+    border-radius: 10px;  /* Increased border radius for smoother corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
+    font-family: Arial, sans-serif;  /* Modern font */
+}
+
+.login p {
+    margin-bottom: 20px;
+    color: #333;  /* Darker text color for better readability */
+    font-size: 24px;  /* Larger font size for the heading */
+    text-align: center;  /* Centered text */
+    font-weight: bold;  /* Bold text */
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;  /* Arrange elements vertically */
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 10px;  /* Increased padding for better touch targets */
+    margin-bottom: 20px;  /* Space between inputs */
+    border: 1px solid #ddd;  /* Light border for inputs */
+    border-radius: 5px;  /* Slightly rounded corners for inputs */
+    font-size: 16px;  /* Larger font size for inputs */
+    box-sizing: border-box;  /* Ensure padding doesn't affect width */
+}
+
+.login button {
+    width: 100%;
+    padding: 12px;  /* Increased padding for better touch targets */
+    background-color: #5cb85c;  /* Brighter green for the button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;  /* Slightly rounded corners for the button */
+    cursor: pointer;
+    font-size: 16px;  /* Larger font size for the button */
+    transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.login button:hover {
+    background-color: #4cae4c;  /* Slightly darker green on hover */
+}
+
+.login a {
+    color: #007bff;
+    text-decoration: none;
+    display: block;  /* Make the link a block element */
+    text-align: center;  /* Center the link text */
+    margin-top: 20px;  /* Space above the link */
+    font-size: 14px;  /* Slightly smaller font for the link */
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
