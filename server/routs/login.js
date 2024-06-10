@@ -1,3 +1,19 @@
+import { Router } from "express"
+import pgPromise from 'pg-promise';
+
+const pgp = pgPromise()
+const db = pgp({
+    host: 'ep-quiet-snow-a6bzlu38.us-west-2.retooldb.com',
+    port: 5432,
+    database: 'retool',
+    user: 'retool',
+    password: process.env.DB_PASSWORD,
+    ssl: true
+})
+
+
+
+const router = Router()
 
 
 
@@ -6,18 +22,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-app.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
     try {
@@ -33,3 +38,12 @@ app.post('/login', async (req, res) => {
         res.json({ ok: false })
     }
 })
+
+
+
+
+
+
+
+export default router
+

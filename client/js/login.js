@@ -43,7 +43,9 @@ async function loginBtnClicked(event) {
   if (validate.validate == true) {
     displayApp()
   } else {
-    alert('invalid pass word try egain')
+    
+    document.getElementById('Invalid').style.display = 'block'
+    setTimeout(()=>{document.getElementById('Invalid').style.display = 'none'},4000)
     loginBtn.innerText = 'LogIn';
   }
   

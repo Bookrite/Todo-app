@@ -1,8 +1,22 @@
+import { Router } from "express"
+import pgPromise from 'pg-promise';
+
+const pgp = pgPromise()
+const db = pgp({
+    host: 'ep-quiet-snow-a6bzlu38.us-west-2.retooldb.com',
+    port: 5432,
+    database: 'retool',
+    user: 'retool',
+    password: process.env.DB_PASSWORD,
+    ssl: true
+})
 
 
 
+const router = Router()
 
-app.post('/tasks', async (req, res) => {
+
+ router.post('/', async (req, res) => {
     let id = await db.one('select id from todo.person  where email = $1', [req.body.id])
     console.log(id)
     try {
@@ -21,9 +35,10 @@ app.post('/tasks', async (req, res) => {
 
 
 
-app.get('/tasks', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const user_id = await db.one('select id from todo.person p where email = $1', [req.query.username]);
+       
         const result = await db.manyOrNone('select * from todo.task where deleted_at is null and user_id = $1', [user_id.id]);
 
         res.json(result.map(task => ({ id: task.id, title: task.title, done: task.status !== 'active' })))
@@ -31,7 +46,7 @@ app.get('/tasks', async (req, res) => {
 })
 
 
-app.delete('/tasks/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const userId = await db.one('select id 	from todo.person p where email = $1', [req.query.username])
         await db.none("update todo.task set deleted_at = now() where id = $1 and  user_id = $2", [Number(req.params.id), userId.id])
@@ -39,7 +54,7 @@ app.delete('/tasks/:id', async (req, res) => {
     } catch (err) { console.log(err) }
 })
 
-app.patch('/tasks/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const userId = await db.one('select id 	from todo.person p where email = $1', [req.query.username])
         console.log(userId)
@@ -47,4 +62,7 @@ app.patch('/tasks/:id', async (req, res) => {
         res.json({ ok: true })
     } catch (err) { console.log(err) }
 }) 
- 
+
+
+
+ export default router;

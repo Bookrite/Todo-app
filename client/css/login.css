@@ -71,6 +71,7 @@ body {
 }
 
 .Invalid{
+    display: none;
     position: absolute;
     top: 55px;
     color: red;
